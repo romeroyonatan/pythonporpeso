@@ -93,3 +93,7 @@ def test7():
 def test8():
     conversion_rate = 120 * Peso / Dollar
     assert 24000 * Peso / conversion_rate == 200 * Dollar
+
+
+def test9():
+    assert repr(24000 * Peso) == "24000 * Peso"
