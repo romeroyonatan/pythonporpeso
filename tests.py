@@ -73,6 +73,9 @@ class CurrencySum:
     def __str__(self):
         return f"{self.operand1} + {self.operand2}"
 
+    def __repr__(self):
+        return f"{repr(self.operand1)} + {repr(self.operand2)}"
+
 
 class Peso(Currency):
     singular = "peso"
@@ -155,4 +158,8 @@ def test13():
     assert (
         str(10000 * Peso + 1000 * Dollar + 500 * Euro)
         == "10000 pesos + 1000 dollars + 500 euros"
+    )
+    assert (
+            repr(10000 * Peso + 1000 * Dollar + 500 * Euro)
+            == "10000 * Peso + 1000 * Dollar + 500 * Euro"
     )
