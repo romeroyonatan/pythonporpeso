@@ -1,4 +1,9 @@
-class Peso:
+class PesoMeta(type):
+    def __rmul__(self, other):
+        return Peso(other)
+
+
+class Peso(metaclass=PesoMeta):
     def __init__(self, value):
         self.value = value
 
@@ -26,3 +31,4 @@ def test2():
 
 def test3():
     assert 1 * Peso == Peso(1)
+    assert str(2 * Peso) == "2 pesos"
