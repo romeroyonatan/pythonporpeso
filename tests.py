@@ -8,6 +8,11 @@ class Peso:
         else:
             return f"{self.value} pesos"
 
+    def __eq__(self, other):
+        if not isinstance(other, Peso):
+            return NotImplemented
+        return self.value == other.value
+
 
 def test1():
     assert str(Peso(1)) == "1 peso"
@@ -16,3 +21,4 @@ def test1():
 
 def test2():
     assert Peso(1) == Peso(1)
+    assert Peso(1) != Peso(2)
