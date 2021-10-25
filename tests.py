@@ -12,3 +12,7 @@ class Peso:
 def test1():
     assert str(Peso(1)) == "1 peso"
     assert str(Peso(2)) == "2 pesos"
+
+
+def test2():
+    assert Peso(1) == Peso(1)
