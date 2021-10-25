@@ -20,6 +20,14 @@ class ConversionRate:
         cls = type(self.nominator)
         return cls(other.value * self.nominator.value)
 
+    def __rtruediv__(self, other):
+        # self: conversion rate
+        # other: 24000 * Peso
+        # tengo que devolver dollar
+        # nominador: pesos
+        # denominador: Dollar
+        return self.denominator(other.value / self.nominator.value)
+
 
 class Currency(metaclass=Unit):
     singular: str
