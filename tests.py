@@ -32,3 +32,7 @@ def test2():
 def test3():
     assert 1 * Peso == Peso(1)
     assert str(2 * Peso) == "2 pesos"
+
+
+def test4():
+    assert 1 * Dollar == Dollar(1)
