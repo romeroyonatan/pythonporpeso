@@ -13,7 +13,7 @@ class ConversionRate:
         self.nominator = nominator  # pesos
         self.denominator = denominator  # dollar
 
-    def __rmul__(self, other):
+    def multiply_currency(self, other):
         # self: convertion rate
         # other: 100 * Dollar
         # tengo que devolver pesos
@@ -58,6 +58,10 @@ class Currency(metaclass=Unit):
             return CurrencySum(self, other)
         else:
             return NotImplemented
+
+    def __mul__(self, other):
+        return other.multiply_currency(self)
+
 
 
 class CurrencySum:
