@@ -122,3 +122,6 @@ def test11():
     conversion_rate = 0.85 * Euro / Dollar
     assert 85 * Euro / conversion_rate == 100 * Dollar
 
+
+def test12():
+    assert 1 * Peso + 1 * Peso == 2 * Peso
