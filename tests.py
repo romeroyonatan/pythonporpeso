@@ -113,3 +113,12 @@ def test10():
     assert repr(24000 * Euro) == "24000 * Euro"
     assert str(24000 * Euro) == "24000 euros"
     assert str(1 * Euro) == "1 euro"
+
+
+def test11():
+    conversion_rate = 0.85 * Euro / Dollar
+    assert 100 * Dollar * conversion_rate == 85 * Euro
+
+    conversion_rate = 0.85 * Euro / Dollar
+    assert 85 * Euro / conversion_rate == 100 * Dollar
+
