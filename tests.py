@@ -50,6 +50,12 @@ class Currency(metaclass=Unit):
     def __repr__(self):
         return f"{self.value} * {self.__class__.__name__}"
 
+    def __add__(self, other):
+        cls = type(self)
+        if not isinstance(other, cls):
+            return NotImplemented
+        return cls(self.value + other.value)
+
 
 class Peso(Currency):
     singular = "peso"
@@ -125,3 +131,4 @@ def test11():
 
 def test12():
     assert 1 * Peso + 1 * Peso == 2 * Peso
+    assert 1 * Euro + 1 * Euro == 2 * Euro
