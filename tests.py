@@ -47,6 +47,9 @@ class Currency(metaclass=Unit):
         else:
             return f"{self.value} {self.plural}"
 
+    def __repr__(self):
+        return f"{self.value} * {self.__class__.__name__}"
+
 
 class Peso(Currency):
     singular = "peso"
@@ -97,3 +100,4 @@ def test8():
 
 def test9():
     assert repr(24000 * Peso) == "24000 * Peso"
+    assert repr(240 * Dollar) == "240 * Dollar"
