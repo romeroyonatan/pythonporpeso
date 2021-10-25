@@ -10,8 +10,8 @@ class Unit(type):
 
 class ConversionRate:
     def __init__(self, nominator, denominator):
-        self.nominator = nominator # pesos
-        self.denominator = denominator # dollar
+        self.nominator = nominator  # pesos
+        self.denominator = denominator  # dollar
 
     def __rmul__(self, other):
         # self: convertion rate
@@ -52,9 +52,26 @@ class Currency(metaclass=Unit):
 
     def __add__(self, other):
         cls = type(self)
-        if not isinstance(other, cls):
+        if isinstance(other, cls):
+            return cls(self.value + other.value)
+        elif isinstance(other, Currency):
+            return CurrencySum(self, other)
+        else:
             return NotImplemented
-        return cls(self.value + other.value)
+
+
+class CurrencySum:
+    def __init__(self, operand1, operand2):
+        self.operand1 = operand1
+        self.operand2 = operand2
+
+    def __add__(self, other):
+        if not isinstance(other, Currency):
+            return NotImplemented
+        return CurrencySum(self, other)
+
+    def __str__(self):
+        return f"{self.operand1} + {self.operand2}"
 
 
 class Peso(Currency):
@@ -135,5 +152,7 @@ def test12():
 
 
 def test13():
-    # TypeError
-    assert str(10000 * Peso + 1000 * Dollar + 500 * Euro) == "10000 pesos + 1000 dolares + 500 euros"
+    assert (
+        str(10000 * Peso + 1000 * Dollar + 500 * Euro)
+        == "10000 pesos + 1000 dollars + 500 euros"
+    )
