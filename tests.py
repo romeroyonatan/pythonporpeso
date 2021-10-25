@@ -61,6 +61,11 @@ class Dollar(Currency):
     plural = "dollars"
 
 
+class Euro(Currency):
+    singular = "euro"
+    plural = "euros"
+
+
 def test1():
     assert str(Peso(1)) == "1 peso"
     assert str(Peso(2)) == "2 pesos"
@@ -105,3 +110,6 @@ def test9():
 
 def test10():
     assert 1 * Euro == Euro(1)
+    assert repr(24000 * Euro) == "24000 * Euro"
+    assert str(24000 * Euro) == "24000 euros"
+    assert str(1 * Euro) == "1 euro"
