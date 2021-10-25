@@ -1,6 +1,6 @@
 class PesoMeta(type):
     def __rmul__(self, other):
-        return Peso(other)
+        return self(other)
 
 
 class Peso(metaclass=PesoMeta):
@@ -15,6 +15,22 @@ class Peso(metaclass=PesoMeta):
 
     def __eq__(self, other):
         if not isinstance(other, Peso):
+            return NotImplemented
+        return self.value == other.value
+
+
+class Dollar(metaclass=PesoMeta):
+    def __init__(self, value):
+        self.value = value
+
+    def __str__(self):
+        if self.value == 1:
+            return "1 dollar"
+        else:
+            return f"{self.value} dollar"
+
+    def __eq__(self, other):
+        if not isinstance(other, Dollar):
             return NotImplemented
         return self.value == other.value
 
