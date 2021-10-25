@@ -80,3 +80,8 @@ def test6():
 def test7():
     conversion_rate = 120 * Peso / Dollar
     assert str(100 * Dollar * conversion_rate) == "12000 pesos"
+
+
+def test8():
+    conversion_rate = 120 * Peso / Dollar
+    assert 24000 * Peso / conversion_rate == 200 * Dollar
