@@ -22,3 +22,7 @@ def test1():
 def test2():
     assert Peso(1) == Peso(1)
     assert Peso(1) != Peso(2)
+
+
+def test3():
+    assert 1 * Peso == Peso(1)
