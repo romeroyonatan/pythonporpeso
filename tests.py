@@ -132,3 +132,8 @@ def test11():
 def test12():
     assert 1 * Peso + 1 * Peso == 2 * Peso
     assert 1 * Euro + 1 * Euro == 2 * Euro
+
+
+def test13():
+    # TypeError
+    assert str(10000 * Peso + 1000 * Dollar + 500 * Euro) == "10000 pesos + 1000 dolares + 500 euros"
