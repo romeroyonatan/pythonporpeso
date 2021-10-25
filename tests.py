@@ -3,36 +3,33 @@ class PesoMeta(type):
         return self(other)
 
 
-class Peso(metaclass=PesoMeta):
+class Currency(metaclass=PesoMeta):
+    singular: str
+    plural: str
+
     def __init__(self, value):
         self.value = value
 
-    def __str__(self):
-        if self.value == 1:
-            return "1 peso"
-        else:
-            return f"{self.value} pesos"
-
     def __eq__(self, other):
-        if not isinstance(other, Peso):
+        if not isinstance(other, type(self)):
             return NotImplemented
         return self.value == other.value
 
-
-class Dollar(metaclass=PesoMeta):
-    def __init__(self, value):
-        self.value = value
-
     def __str__(self):
         if self.value == 1:
-            return "1 dollar"
+            return f"{self.value} {self.singular}"
         else:
-            return f"{self.value} dollar"
+            return f"{self.value} {self.plural}"
 
-    def __eq__(self, other):
-        if not isinstance(other, Dollar):
-            return NotImplemented
-        return self.value == other.value
+
+class Peso(Currency):
+    singular = "peso"
+    plural = "pesos"
+
+
+class Dollar(Currency):
+    singular = "dollar"
+    plural = "dollars"
 
 
 def test1():
@@ -52,3 +49,11 @@ def test3():
 
 def test4():
     assert 1 * Dollar == Dollar(1)
+
+
+def test5():
+    assert 1 * Peso != 1 * Dollar
+
+
+def test6():
+    assert str(2 * Dollar) == "2 dollars"
