@@ -1,9 +1,27 @@
-class PesoMeta(type):
+class Unit(type):
     def __rmul__(self, other):
         return self(other)
 
+    def __rtruediv__(self, other):
+        # other: 120 * Peso
+        # self: Dollar
+        return ConversionRate(other, self)
 
-class Currency(metaclass=PesoMeta):
+
+class ConversionRate:
+    def __init__(self, nominator, denominator):
+        self.nominator = nominator # pesos
+        self.denominator = denominator # dollar
+
+    def __rmul__(self, other):
+        # self: convertion rate
+        # other: 100 * Dollar
+        # tengo que devolver pesos
+        cls = type(self.nominator)
+        return cls(other.value * self.nominator.value)
+
+
+class Currency(metaclass=Unit):
     singular: str
     plural: str
 
